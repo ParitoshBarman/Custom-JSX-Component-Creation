@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom-JSX-Component-Creation</title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script type="text/babel">
+
+        function SmallComponents(props){
+            return (
+                <div>Hi I am a small components {props.num}</div>
+            )
+        }
+
+        // Header components
+        function Header(){
+            return (
+                <div className="Header" id="Header">
+                    <h1>This is Header section</h1>
+                    </div>
+            );
+        }
+
+        // Content components
+        function Content(props){
+            return (
+                <div className="Content" id="Content">
+                    <h2>This is content Section</h2>
+                    <div>{props.list}</div>
+                    </div>
+            );
+        }
+
+        // Footer components
+        function Footer(){
+            return (
+                <div className="Footer" id="Footer">
+                    <h1>This is Footer section</h1>
+                    </div>
+            );
+        }
+
+        // this is main app function
+        function App(){
+            return (
+            <>
+            <Header/>
+            <Content list={[<SmallComponents num={1}/>, <SmallComponents num={2}/>, <SmallComponents num={3}/>, <SmallComponents num={4}/>]}/>
+            <Footer/>
+            </>
+            );
+        }
+
+        const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+        rootElement.render(<App/>);
+    </script>
+</body>
+
+</html>
